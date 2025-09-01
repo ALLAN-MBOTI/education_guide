@@ -48,16 +48,13 @@
 
 
 
-                <p>{% blocktrans with confirmation.email_address.email as email
-                  %}Please confirm that <a href="mailto:{{ email }}">{{ email
-                    }}</a> is an e-mail address for user
+                <p>{% blocktrans with confirmation.email_address.email as email %} Please confirm that <a href="mailto:{{ email }}">{{email}}</a> is an e-mail address for user
                   {{ user_display }}.{% endblocktrans %}</p>
 
                 <form method="post"
                   action="{% url 'account_confirm_email' confirmation.key %}">
                   {% csrf_token %}
-                  <button type="submit" class="readon2 get-new">{% trans
-                    'Confirm' %}</button>
+                  <button type="submit" class="readon2 get-new">{% trans 'Confirm' %}</button>
                 </form>
 
                 {% else %}
