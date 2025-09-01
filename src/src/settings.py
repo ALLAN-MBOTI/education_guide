@@ -77,7 +77,7 @@ INSTALLED_APPS = [
 
     # Local apps
     'users',
-    'library',
+    'education',
 ]
 
 SITE_ID = 1
