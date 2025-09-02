@@ -24,7 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ib1a3!-uw39keq8c!zv(4n%$4g$vk$btuke0^p0%9^m9!oz%70'
 
 DEBUG = False
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['102.220.23.165', 'http:/test25.enfliquedesigns.co.ke']
 
 # ----------------------------
 # API Keys
@@ -40,12 +41,12 @@ INTASEND_SECRET_KEY = "ISSecretKey_test_f188593e-8cbe-4320-a810-7a6ac4d8fd9c"
 # ----------------------------
 # Django Site Path (Subpath)
 # ----------------------------
-# FORCE_SCRIPT_NAME = '/linrary'
-# STATIC_URL = '/linrary/static/'
-# MEDIA_URL = '/linrary/media/'
+FORCE_SCRIPT_NAME = '/education'
+STATIC_URL = '/education/static/'
+MEDIA_URL = '/education/media/'
 # FORCE_SCRIPT_NAME = '/'
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+# STATIC_URL = '/static/'
+# MEDIA_URL = '/media/'
 # ----------------------------
 # Installed Apps
 # ----------------------------
@@ -181,15 +182,15 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
-LOGIN_REDIRECT_URL = '/account_check/'
-ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/education/account_check/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/education'
 ACCOUNT_PASSWORD_MIN_LENGTH = 8
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_LOGOUT_ON_GET = False
 ACCOUNT_CONFIRM_EMAIL_ON_GET = False
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/education'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 
 # ----------------------------
