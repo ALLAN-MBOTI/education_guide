@@ -25,7 +25,7 @@ admin.site.index_title = "WELCOME TO EDUCATION CENTER PORTAL"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('education.urls')),
-    path('accounts/', include('allauth.urls')),
+    # path('accounts/', include('allauth.urls')),
     #  path('meetings/', include('meetings.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('tinymce/', include('tinymce.urls')),

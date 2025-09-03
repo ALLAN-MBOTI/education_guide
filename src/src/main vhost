@@ -1,0 +1,107 @@
+<VirtualHost *:80>
+    ServerName 102.220.23.165
+
+    # ---------------- Logs ----------------
+    ErrorLog ${APACHE_LOG_DIR}/django_apps_error.log
+    CustomLog ${APACHE_LOG_DIR}/django_apps_access.log combined
+
+    # ---------------- Django Daemon Processes ----------------
+    WSGIDaemonProcess recipe python-home=/var/www/test/recipe/venv \
+        python-path=/var/www/test/recipe/recipe/src
+    WSGIDaemonProcess education python-home=/var/www/test/education/venv \
+        python-path=/var/www/test/education/education_guide/src
+    WSGIDaemonProcess mediguide python-home=/var/www/test/mediguide/venv_med \
+        python-path=/var/www/test/mediguide/mediguide/src
+    WSGIDaemonProcess library python-home=/var/www/test/library/venv_lib \
+        python-path=/var/www/test/library/library/src
+    WSGIDaemonProcess onlineexam python-home=/var/www/test/onlineexam/venv_exam \
+        python-path=/var/www/test/onlineexam/onlineexam/src
+
+    # ---------------- Static & Media ----------------
+    Alias /recipe/static/ /var/www/test/recipe/recipe/src/staticfiles/
+    Alias /recipe/media/ /var/www/test/recipe/recipe/src/media/
+    Alias /education/static/ /var/www/test/education/education_guide/src/staticfiles/
+    Alias /education/media/ /var/www/test/education/education_guide/src/media/
+    Alias /mediguide/static/ /var/www/test/mediguide/mediguide/src/staticfiles/
+    Alias /mediguide/media/ /var/www/test/mediguide/mediguide/src/media/
+    Alias /library/static/ /var/www/test/library/library/src/staticfiles/
+    Alias /library/media/ /var/www/test/library/library/src/media/
+    Alias /onlineexam/static/ /var/www/test/onlineexam/onlineexam/src/staticfiles/
+    Alias /onlineexam/media/ /var/www/test/onlineexam/onlineexam/src/media/
+
+    <Directory /var/www/test/recipe/recipe/src/staticfiles>
+        Require all granted
+    </Directory>
+    <Directory /var/www/test/recipe/recipe/src/media>
+        Require all granted
+    </Directory>
+
+    <Directory /var/www/test/education/education_guide/src/staticfiles>
+        Require all granted
+    </Directory>
+    <Directory /var/www/test/education/education_guide/src/media>
+        Require all granted
+    </Directory>
+
+    <Directory /var/www/test/mediguide/mediguide/src/staticfiles>
+        Require all granted
+    </Directory>
+    <Directory /var/www/test/mediguide/mediguide/src/media>
+        Require all granted
+    </Directory>
+
+    <Directory /var/www/test/library/library/src/staticfiles>
+        Require all granted
+    </Directory>
+    <Directory /var/www/test/library/library/src/media>
+        Require all granted
+    </Directory>
+
+    <Directory /var/www/test/onlineexam/onlineexam/src/staticfiles>
+        Require all granted
+    </Directory>
+    <Directory /var/www/test/onlineexam/onlineexam/src/media>
+        Require all granted
+    </Directory>
+
+    # ---------------- WSGI Applications ----------------
+    WSGIScriptAlias /recipe /var/www/test/recipe/recipe/src/src/wsgi.py \
+        process-group=recipe
+    <Directory /var/www/test/recipe/recipe/src/src>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    WSGIScriptAlias /education /var/www/test/education/education_guide/src/src/wsgi.py \
+        process-group=education
+    <Directory /var/www/test/education/education_guide/src/src>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    WSGIScriptAlias /mediguide /var/www/test/mediguide/mediguide/src/mediguide/wsgi.py \
+        process-group=mediguide
+    <Directory /var/www/test/mediguide/mediguide/src/mediguide>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    WSGIScriptAlias /library /var/www/test/library/library/src/library/wsgi.py \
+        process-group=library
+    <Directory /var/www/test/library/library/src/library>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    WSGIScriptAlias /onlineexam /var/www/test/onlineexam/onlineexam/src/onlineexam/wsgi.py \
+        process-group=onlineexam
+    <Directory /var/www/test/onlineexam/onlineexam/src/onlineexam>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+</VirtualHost>
