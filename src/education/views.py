@@ -240,7 +240,7 @@ def make_subscription(request, pk):
                 new_key = generate_unique_api_ref()
                 subscription = Subscription.objects.create(
                     user=user, category=category, new=True, api_ref=new_key, pending=False, confirmed=True, expired=False, expiry_date=timezone.now() + timedelta(days=int(category.duration_days)))
-        return redirect('/subscriptions')
+        return redirect('subscriptions')
     else:
         return HttpResponseRedirect('/')
 
@@ -263,7 +263,7 @@ def cancel_subscription(request, pk):
         #     except:
         #         subscription = Subscription.objects.create(
         #             user=user, category=category, new=True, expired=False, expiry_date=timezone.now() + timedelta(days=int(category.duration_days)))
-        return redirect('/subscriptions')
+        return redirect('subscriptions')
     else:
         return HttpResponseRedirect('/')
 
@@ -507,9 +507,9 @@ def dashboard(request):
     user = request.user
     if user.is_authenticated:
         if user.is_superuser:
-            pass
+            return redirect('admin')
         else:
-            return redirect('/account')
+            return redirect('account')
         return render(request, "frontend/index.html")
     else:
         return HttpResponseRedirect('/')
@@ -711,7 +711,7 @@ def education(request):
         subscription = Subscription.objects.filter(user=user, is_active=True, is_deleted=False, expired=False).latest(
             "expiry_date")  # get the latest subscription
     except:
-        return redirect('/subscription-categories')
+        return redirect('subscription-categories')
     if timezone.now() < subscription.expiry_date:
         if request.method == "POST":
             form = EducationForm(request.POST)
@@ -745,7 +745,7 @@ def education(request):
             form = EducationForm()
         return render(request, "frontend/information_form.html", {"form": form})
     else:
-        return redirect('/subscription-categories')
+        return redirect('subscription-categories')
 
 
 @login_required
